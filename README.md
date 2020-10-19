@@ -5,7 +5,7 @@
 ```
 As a user,
 So I can visit my regular websites,
-I would like to list bookmarks.
+I would like to view a list of my bookmarks.
 ```
 
-![Bookmark Model](https://i.imgur.com/B05akBC.png)
+![Bookmark-Manager Domain Model](https://i.imgur.com/ecog8j8.png)
