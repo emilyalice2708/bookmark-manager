@@ -8,4 +8,6 @@ So I can visit my regular websites,
 I would like to view a list of my bookmarks.
 ```
 
+## Domain Model
+
 ![Bookmark-Manager Domain Model](https://i.imgur.com/ecog8j8.png)
