@@ -27,5 +27,5 @@ CREATE DATABASE bookmark_manager;
 \c bookmark_manager;
 ```
 4. Run the query saved in file 01_create_bookmarks_table.sql
-=======
+
 
