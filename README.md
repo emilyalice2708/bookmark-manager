@@ -31,4 +31,21 @@ CREATE DATABASE bookmark_manager;
 CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60))
 ```
 
+## Test Set Up
 
+1. Connect to psql:
+```
+psql
+```
+2. Create the test database:
+```
+CREATE DATABASE bookmark_manager_test;
+```
+3. Connect to the database:
+```
+\c bookmark_manager_test;
+```
+4. Run the query we have saved in the file 01_create_bookmarks_table.sql:
+```
+CREATE TABLE bookmarks(id SERIAL PRIMARY KEY, url VARCHAR(60))
+```
