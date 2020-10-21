@@ -1,2 +1,10 @@
-<h1>Bookmarks<h1>
-<p><%=@bookmarks%></p>
+<h1> Bookmarks </h1>
+<ul>
+  <% @bookmarks.map do |bookmark| %>
+    <li>
+      <a href="<%= bookmark.url %>">
+        <%= bookmark.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>
