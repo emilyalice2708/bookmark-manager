@@ -7,7 +7,7 @@ As a user,
 So I can visit my regular websites,
 I would like to view a list of my bookmarks.
 ```
-``
+```
 As a user,
 So that I can save a website for later,
 I would like to be able to save a new bookmark.
@@ -16,6 +16,11 @@ I would like to be able to save a new bookmark.
 As a user,
 So that I can remove bookmarks I no longer need,
 I would like to delete a bookmark.
+```
+```
+As a user,
+So that I can edit my bookmarks,
+I would like to update a bookmark.
 ```
 
 ## Domain Model
