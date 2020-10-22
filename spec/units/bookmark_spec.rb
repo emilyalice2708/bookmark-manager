@@ -48,4 +48,16 @@ describe Bookmark do
       expect(edited_bookmark.title).to eq "Changed"
     end
   end
+
+  describe '.find' do
+    it 'retrieves a bookmark' do
+      bookmark = Bookmark.add("www.google.com", "Google")
+      result = Bookmark.find(bookmark.id)
+
+      expect(result).to be_a Bookmark
+      expect(result.id).to eq bookmark.id
+      expect(result.title).to eq "Google"
+      expect(result.url).to eq "www.google.com"
+    end
+  end
 end
