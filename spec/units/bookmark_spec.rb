@@ -28,4 +28,12 @@ describe Bookmark do
        expect(new_bookmark.title).to eq "BBC"
     end
   end
+
+  describe '.delete' do
+    it 'removes a bookmark' do
+      bad_bookmark = Bookmark.add("www.useless.com", "Useless")
+      Bookmark.delete(bad_bookmark.id)
+      expect(Bookmark.all).to be_empty
+    end
+  end
 end
