@@ -36,4 +36,16 @@ describe Bookmark do
       expect(Bookmark.all).to be_empty
     end
   end
+
+  describe '.update' do
+    it 'updates a bookmark' do
+      bookmark = Bookmark.add("www.needschanging.co.uk", "Change me")
+      edited_bookmark = Bookmark.update(bookmark.id, "www.changed.co.uk", "Changed")
+      
+      expect(edited_bookmark).to be_a Bookmark
+      expect(edited_bookmark.id).to eq bookmark.id
+      expect(edited_bookmark.url).to eq "www.changed.co.uk"
+      expect(edited_bookmark.title).to eq "Changed"
+    end
+  end
 end
