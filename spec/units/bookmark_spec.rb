@@ -76,4 +76,17 @@ describe Bookmark do
       bookmark.comments(comment)
     end
   end
+
+  describe '#tags' do
+    it 'returns the tags associated with a bookmark' do
+      bookmark = Bookmark.add("http://www.facebook.com", "Facebook")
+      result = DatabaseConnection.query("INSERT INTO tags (content) VALUES('Social') RETURNING id;")
+      DatabaseConnection.query("INSERT INTO bookmark_tags (bookmark_id, tag_id) VALUES('#{bookmark.id}', '#{result[0]['id']}');")
+
+      tag = bookmark.tags.first
+      
+      expect(tag['content']).to eq 'Social'
+      
+    end
+  end
 end
