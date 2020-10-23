@@ -45,8 +45,8 @@ class Bookmark
     comment_class.return_comments(id)
   end
 
-  def tags
-    result = DatabaseConnection.query("SELECT content FROM bookmark_tags INNER JOIN tags ON tags.id = bookmark_tags.tag_id WHERE bookmark_tags.bookmark_id = #{id};")
+  def tags(tag = Tag)
+    tag.return_tags(id)
   end
 
   private
