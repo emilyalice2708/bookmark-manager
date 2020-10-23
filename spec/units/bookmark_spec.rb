@@ -22,7 +22,7 @@ describe Bookmark do
     it 'adds a bookmark to the database' do
        new_bookmark = Bookmark.add("http://bbc.co.uk/sport", "BBC")
        data = persisted_data(table: 'bookmarks', id: new_bookmark.id)
-       
+
        expect(new_bookmark).to be_a Bookmark
        expect(new_bookmark.id).to eq data.first['id']
        expect(new_bookmark.url).to eq "http://bbc.co.uk/sport"
@@ -68,12 +68,12 @@ describe Bookmark do
   end
 
   describe '#comments' do
-    it 'returns a bookmarks comments' do
+    let(:comment) { double :comment_class }
+    it 'asks Comments class to return comments' do
       bookmark = Bookmark.add("http://www.google.com", "Google")
-      DatabaseConnection.query("INSERT INTO comments (id, text, bookmark_id) VALUES(1, 'useful website', #{bookmark.id})")
-      comment = bookmark.comments.first 
+      expect(comment).to receive(:return_comments).with(bookmark.id)
       
-      expect(comment['text']).to eq 'useful website'
+      bookmark.comments(comment)
     end
   end
 end
