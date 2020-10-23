@@ -3,6 +3,7 @@ require 'sinatra/flash'
 require 'shotgun'
 require './lib/bookmark'
 require_relative './database_connection_setup'
+require './lib/comment'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
@@ -44,6 +45,18 @@ class BookmarkManager < Sinatra::Base
 
   post '/bookmarks/:id/comments/' do
     Comment.write(params[:comment], params[:id])
+    redirect to '/bookmarks'
+  end
+
+  #<form action='/bookmarks/<%=bookmark.id%>/tags/new' method='get'>
+  get '/bookmarks/:id/tags/new' do
+    @bookmark = Bookmark.find(params[:id])
+    erb :'/bookmarks/tags/new'
+  end
+
+  post '/bookmarks/:id/tags' do
+    result = DatabaseConnection.query("INSERT INTO tags (content) VALUES('#{params[:tag]}') RETURNING id;")
+    DatabaseConnection.query("INSERT INTO bookmark_tags (bookmark_id, tag_id) VALUES('#{params[:id]}', '#{result[0]['id']}');")
     redirect to '/bookmarks'
   end
   
