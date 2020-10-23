@@ -1,4 +1,5 @@
 require 'bookmark'
+require 'database_helpers'
 
 describe Bookmark do
   describe '.all' do
@@ -20,7 +21,7 @@ describe Bookmark do
   describe '.add' do
     it 'adds a bookmark to the database' do
        new_bookmark = Bookmark.add("http://bbc.co.uk/sport", "BBC")
-       data = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id = #{new_bookmark.id};")
+       data = persisted_data(table: 'bookmarks', id: new_bookmark.id)
        
        expect(new_bookmark).to be_a Bookmark
        expect(new_bookmark.id).to eq data.first['id']
