@@ -1,0 +1,1 @@
+CREATE TABLE bookmark_tags(id SERIAL PRIMARY KEY, tag_id INTEGER REFERENCES tags (id), bookmark_id INTEGER REFERENCES bookmarks (id));
