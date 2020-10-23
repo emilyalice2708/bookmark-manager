@@ -22,6 +22,16 @@ As a user,
 So that I can edit my bookmarks,
 I would like to update a bookmark.
 ```
+```
+As a user,
+So that I can share my opinion,
+I'd like to be able to comment on bookmarks.
+```
+```
+As a user,
+So that I can organise my bookmarks,
+I'd like to be able to add a tag.
+```
 
 ## Domain Model
 
