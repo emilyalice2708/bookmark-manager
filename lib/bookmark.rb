@@ -40,8 +40,6 @@ class Bookmark
   end
 
   def comments(comment_class = Comment)
-    # We don't need to pass in id because this is an instance method with access
-    # to each object's id instance variable.
     comment_class.return_comments(id)
   end
 
