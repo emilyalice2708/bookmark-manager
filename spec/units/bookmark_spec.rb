@@ -65,4 +65,14 @@ describe Bookmark do
       expect(result.url).to eq "http://www.google.com"
     end
   end
+
+  describe '#comments' do
+    it 'returns a bookmarks comments' do
+      bookmark = Bookmark.add("http://www.google.com", "Google")
+      DatabaseConnection.query("INSERT INTO comments (id, text, bookmark_id) VALUES(1, 'useful website', #{bookmark.id})")
+      comment = bookmark.comments.first 
+      
+      expect(comment['text']).to eq 'useful website'
+    end
+  end
 end

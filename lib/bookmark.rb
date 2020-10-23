@@ -39,6 +39,12 @@ class Bookmark
     Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
   end
 
+  def comments
+    # We don't need to pass in id because this is an instance method with access
+    # to each object's id instance variable.
+    DatabaseConnection.query("SELECT * FROM comments WHERE bookmark_id = #{id};")
+  end
+
   private
 
   def self.valid_url?(link)
