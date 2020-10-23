@@ -1,5 +1,6 @@
 require 'pg'
 require_relative 'database_connection'
+require 'uri'
 
 class Bookmark
   attr_reader :id, :title, :url
@@ -17,7 +18,8 @@ class Bookmark
     end
   end
 
-  def self.add(link, title)  
+  def self.add(link, title)
+    return false unless valid_url?(link)
     result = DatabaseConnection.query "INSERT INTO bookmarks (url, title) VALUES('#{link}', '#{title}') RETURNING id, title, url;"
     # Below method ensures a return value we can work with in tests
     Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
@@ -35,5 +37,11 @@ class Bookmark
   def self.find(id)
     result = DatabaseConnection.query("SELECT * FROM bookmarks WHERE id = #{id};")
     Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
+  end
+
+  private
+
+  def self.valid_url?(link)
+    link =~ /\A#{URI::regexp(['http', 'https'])}\z/
   end
 end

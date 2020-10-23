@@ -27,11 +27,16 @@ describe Bookmark do
        expect(new_bookmark.url).to eq "http://bbc.co.uk/sport"
        expect(new_bookmark.title).to eq "BBC"
     end
+
+    it 'does not add invalid urls' do
+      Bookmark.add("Invalid URL", "Bad Bookmark")
+      expect(Bookmark.all).to be_empty
+    end
   end
 
   describe '.delete' do
     it 'removes a bookmark' do
-      bad_bookmark = Bookmark.add("www.useless.com", "Useless")
+      bad_bookmark = Bookmark.add("https://www.donaldjtrump.com/", "Useless")
       Bookmark.delete(bad_bookmark.id)
       expect(Bookmark.all).to be_empty
     end
@@ -39,25 +44,25 @@ describe Bookmark do
 
   describe '.update' do
     it 'updates a bookmark' do
-      bookmark = Bookmark.add("www.needschanging.co.uk", "Change me")
-      edited_bookmark = Bookmark.update(bookmark.id, "www.changed.co.uk", "Changed")
+      bookmark = Bookmark.add("https://www.change.org/", "Change me")
+      edited_bookmark = Bookmark.update(bookmark.id, "https://www.better.org.uk/", "Better")
       
       expect(edited_bookmark).to be_a Bookmark
       expect(edited_bookmark.id).to eq bookmark.id
-      expect(edited_bookmark.url).to eq "www.changed.co.uk"
-      expect(edited_bookmark.title).to eq "Changed"
+      expect(edited_bookmark.url).to eq "https://www.better.org.uk/"
+      expect(edited_bookmark.title).to eq "Better"
     end
   end
 
   describe '.find' do
     it 'retrieves a bookmark' do
-      bookmark = Bookmark.add("www.google.com", "Google")
+      bookmark = Bookmark.add("http://www.google.com", "Google")
       result = Bookmark.find(bookmark.id)
 
       expect(result).to be_a Bookmark
       expect(result.id).to eq bookmark.id
       expect(result.title).to eq "Google"
-      expect(result.url).to eq "www.google.com"
+      expect(result.url).to eq "http://www.google.com"
     end
   end
 end
