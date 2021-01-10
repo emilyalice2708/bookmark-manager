@@ -2,7 +2,7 @@
 
 ## Goals
 - Create a Bookmark Manager program meeting the specification of each user story listed below.
-- Become more familiar with using Ruby with Sinatra and Capybara to create a web app.
+- Become more familiar with using SQL, Ruby with Sinatra and Capybara to create a web app.
 - Use databases to store data used within the program and become familiar with postgres, psql, the ruby gem, 'pg', and TablePlus.
 
 ## My Approach
